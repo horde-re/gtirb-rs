@@ -1,0 +1,23 @@
+[package]
+crate-type = ["lib"]
+
+name = "gtirb-rs"
+description = """
+A Rust API for Intermediate Representation for Binary analysis and transformation (GTIRB).
+"""
+
+version = "0.1.0"
+
+edition = "2021"
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/horde-re/gtirb-rs/"
+
+authors = ["abel <67806187+standard3@users.noreply.github.com>"]
+
+[dependencies]
+prost = "0.13.3"
+prost-types = "0.13.3"
+
+[build-dependencies]
+prost-build = "0.13.3"
