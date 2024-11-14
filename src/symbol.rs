@@ -1,19 +1,15 @@
+use uuid::Uuid;
+
 #[derive(Clone, PartialEq)]
 pub struct Symbol {
-    pub uuid: Vec<u8>,
-
+    pub uuid: Uuid,
     pub name: String,
-
     pub at_end: bool,
-
-    pub optional_payload: ::core::option::Option<symbol::OptionalPayload>,
+    pub optional_payload: Option<OptionalPayload>,
 }
-/// Nested message and enum types in `Symbol`.
-pub mod symbol {
-    #[derive(Clone, PartialEq)]
-    pub enum OptionalPayload {
-        Value(u64),
 
-        ReferentUuid(Vec<u8>),
-    }
+#[derive(Clone, PartialEq)]
+pub enum OptionalPayload {
+    Value(u64),
+    ReferentUuid(Vec<u8>),
 }

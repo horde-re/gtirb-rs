@@ -1,12 +1,16 @@
+use crate::auxdata::AuxData;
+use crate::cfg::Cfg;
+use crate::module::Module;
+
+use std::collections::HashMap;
+
+use uuid::Uuid;
+
 #[derive(Clone, PartialEq)]
 pub struct Ir {
-    pub uuid: Vec<u8>,
-
+    pub uuid: Uuid,
     pub modules: Vec<Module>,
-
-    pub aux_data: ::std::collections::HashMap<String, AuxData>,
-
+    pub aux_data: HashMap<String, AuxData>,
     pub version: u32,
-
-    pub cfg: ::core::option::Option<Cfg>,
+    pub cfg: Option<Cfg>,
 }

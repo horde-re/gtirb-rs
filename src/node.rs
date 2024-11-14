@@ -3,8 +3,7 @@
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-/// Parent trait for all GTIRB components.
-/// Should be implemented by all components.
+/// Parent trait for many GTIRB components.
 pub trait Node {
     type UUID: Eq + Default;
 

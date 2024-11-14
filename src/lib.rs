@@ -8,7 +8,6 @@ pub mod cfg;
 pub mod ir;
 pub mod module;
 pub mod node;
-pub mod offset;
 pub mod section;
 pub mod symbol;
 pub mod symbolic_expression;
