@@ -11,10 +11,16 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
+    # Install probuf compiler
+    - uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+          packages: protobuf-compiler
+          version: 1.0
+
+    # Check format, lint code, build and test it 
     - uses: actions/checkout@v4
     - name: Format
       run: cargo fmt --verbose
