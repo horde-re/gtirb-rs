@@ -1,1 +1,1 @@
-pub use crate::gtirb::proto::Ir;
+use crate::gtirb::proto::Ir;
