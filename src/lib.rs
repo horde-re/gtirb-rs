@@ -6,7 +6,6 @@ pub mod block;
 pub mod byte_interval;
 pub mod cfg;
 pub mod ir;
-pub mod lazy_interval_tree;
 pub mod module;
 pub mod node;
 pub mod offset;
@@ -19,6 +18,7 @@ pub mod symbolic_expression;
 mod gtirb {
     /// Generated proto Rust module from the GTIRB protobuf schema.
     pub mod proto {
+        // This file is generated somewhere in : target/debug/build/gtirb-rs-*/out/gtirb.proto.rs
         include!(concat!(env!("OUT_DIR"), "/gtirb.proto.rs"));
     }
 }
