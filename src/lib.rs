@@ -15,6 +15,7 @@ pub mod symbol;
 pub mod symbolic_expression;
 
 /// Generated GTIRB Rust module from the GTIRB protobuf schema.
+#[allow(clippy::enum_variant_names)] // Generated code
 mod gtirb {
     /// Generated proto Rust module from the GTIRB protobuf schema.
     pub mod proto {
