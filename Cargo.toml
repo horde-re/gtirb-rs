@@ -18,4 +18,8 @@ crate-type = ["lib"]
 
 [dependencies]
 serde = { version = "1.0.215", features = ["derive"] }
-uuid = { version = "1.11.0", features = ["v8", "serde"] }
+uuid = { version = "1.11.0", features = ["v4", "v8", "fast-rng", "serde"] }
+node_derive = { path = "node_derive" }
+
+[dev-dependencies]
+impls = "1.0.3"

@@ -3,11 +3,13 @@ use crate::block::ProxyBlock;
 use crate::section::Section;
 use crate::symbol::Symbol;
 
+use node_derive::Node;
+
 use std::collections::HashMap;
 
 use uuid::Uuid;
 
-#[derive(Clone, PartialEq)]
+#[derive(Node, Clone, PartialEq)]
 pub struct Module {
     pub uuid: Uuid,
     pub binary_path: String,

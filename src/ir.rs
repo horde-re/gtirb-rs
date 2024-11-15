@@ -4,9 +4,11 @@ use crate::module::Module;
 
 use std::collections::HashMap;
 
+use node_derive::Node;
+
 use uuid::Uuid;
 
-#[derive(Clone, PartialEq)]
+#[derive(Node, Clone, PartialEq)]
 pub struct Ir {
     pub uuid: Uuid,
     pub modules: Vec<Module>,

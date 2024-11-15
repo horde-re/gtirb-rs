@@ -1,6 +1,8 @@
+use node_derive::Node;
+
 use uuid::Uuid;
 
-#[derive(Clone, PartialEq)]
+#[derive(Node, Clone, PartialEq)]
 pub struct Symbol {
     pub uuid: Uuid,
     pub name: String,

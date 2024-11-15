@@ -1,8 +1,10 @@
 use crate::byte_interval::ByteInterval;
 
+use node_derive::Node;
+
 use uuid::Uuid;
 
-#[derive(Clone, PartialEq)]
+#[derive(Node, Clone, PartialEq)]
 pub struct Section {
     pub uuid: Uuid,
     pub name: String,

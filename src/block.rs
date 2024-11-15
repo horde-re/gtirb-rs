@@ -4,7 +4,7 @@
 //! - [ ] Implement the `DataBlock` struct and Block trait
 //! - [ ] Implement the `ProxyBlock` struct and Block trait
 
-// use crate::node::Node;
+use node_derive::Node;
 
 use uuid::Uuid;
 
@@ -29,12 +29,18 @@ pub enum BlockValue {
     Data(DataBlock),
 }
 
-#[derive(Clone, PartialEq)]
+#[derive(Node, Clone, PartialEq)]
 pub struct ProxyBlock {
     pub uuid: Uuid,
 }
 
-#[derive(Clone, PartialEq)]
+impl ProxyBlock {
+    pub fn new(uuid: Uuid) -> Self {
+        Self { uuid }
+    }
+}
+
+#[derive(Node, Clone, PartialEq)]
 pub struct CodeBlock {
     pub uuid: Uuid,
     pub size: u64,
@@ -48,7 +54,7 @@ pub enum DecodeMode {
     ArmThumb,
 }
 
-#[derive(Clone, PartialEq)]
+#[derive(Node, Clone, PartialEq)]
 pub struct DataBlock {
     pub uuid: Uuid,
     pub size: u64,
