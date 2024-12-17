@@ -10,6 +10,15 @@ edition = "2021"
 readme = "README.md"
 license = "MIT"
 repository = "https://github.com/horde-re/gtirb-rs/"
+exclude = [".github", "CONTRIBUTING.md", "assets"]
+keywords = [
+    "reverse engineering",
+    "binary analysis",
+    "gtirb",
+    "intermediate representation",
+    "program analysis",
+    "binary rewriting",
+]
 
 authors = ["abel <67806187+standard3@users.noreply.github.com>"]
 
