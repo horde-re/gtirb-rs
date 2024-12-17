@@ -1,18 +1,19 @@
+use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub struct SymStackConst {
     pub offset: i32,
     pub symbol_uuid: Uuid,
 }
 
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub struct SymAddrConst {
     pub offset: i64,
     pub symbol_uuid: Uuid,
 }
 
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub struct SymAddrAddr {
     pub scale: i64,
     pub offset: i64,
@@ -20,13 +21,13 @@ pub struct SymAddrAddr {
     pub symbol2_uuid: Uuid,
 }
 
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub struct SymbolicExpression {
     pub attribute_flags: Vec<i32>,
     pub value: Option<SymbolicExpressionValue>,
 }
 
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub enum SymbolicExpressionValue {
     AddrConst(SymAddrConst),
     AddrAddr(SymAddrAddr),
@@ -36,7 +37,7 @@ pub enum SymbolicExpressionValue {
 /// We do not generalize or otherwise unify relocation attributes across
 /// architectures and instead prefer an explicit mapping of attributes names
 /// to the labels used in the assembly of each architecture.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 #[repr(i32)]
 pub enum SymAttribute {
     /// ELF
