@@ -1,7 +1,7 @@
 //! Tests for the `node_derive` macro.
 
-use gtirb_rs::block::ProxyBlock;
-use gtirb_rs::node::{Node, NodeType};
+use gtirb_rs::ir::block::ProxyBlock;
+use gtirb_rs::ir::node::{Node, NodeType};
 
 use impls::impls;
 use uuid::Uuid;
