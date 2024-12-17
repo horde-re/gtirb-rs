@@ -1,8 +1,4 @@
 //! To-do
-//! - [ ] Implement the `Block` trait
-//! - [ ] Implement the `CodeBlock` struct and Block trait
-//! - [ ] Implement the `DataBlock` struct and Block trait
-//! - [ ] Implement the `ProxyBlock` struct and Block trait
 
 use node_derive::Node;
 

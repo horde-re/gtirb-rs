@@ -1,18 +1,12 @@
-use crate::auxdata::AuxData;
-use crate::cfg::Cfg;
-use crate::module::Module;
+//! Intermediate Representation (IR) for the binary analysis.
 
-use std::collections::HashMap;
-
-use node_derive::Node;
-
-use uuid::Uuid;
-
-#[derive(Node, Clone, PartialEq)]
-pub struct Ir {
-    pub uuid: Uuid,
-    pub modules: Vec<Module>,
-    pub aux_data: HashMap<String, AuxData>,
-    pub version: u32,
-    pub cfg: Option<Cfg>,
-}
+pub mod auxdata;
+pub mod block;
+pub mod byte_interval;
+pub mod cfg;
+pub mod ir;
+pub mod module;
+pub mod node;
+pub mod section;
+pub mod symbol;
+pub mod symbolic_expression;

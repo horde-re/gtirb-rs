@@ -19,7 +19,7 @@ pub fn derive_node(input: TokenStream) -> TokenStream {
     };
 
     let expanded = quote! {
-        use crate::node::*;
+        use super::node::*;
         impl Node for #name {
             type UUID = Uuid;
 

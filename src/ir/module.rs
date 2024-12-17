@@ -1,7 +1,7 @@
-use crate::auxdata::AuxData;
-use crate::block::ProxyBlock;
-use crate::section::Section;
-use crate::symbol::Symbol;
+use super::auxdata::AuxData;
+use super::block::ProxyBlock;
+use super::section::Section;
+use super::symbol::Symbol;
 
 use node_derive::Node;
 

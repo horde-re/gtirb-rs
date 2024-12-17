@@ -1,4 +1,4 @@
-use crate::byte_interval::ByteInterval;
+use super::byte_interval::ByteInterval;
 
 use node_derive::Node;
 
