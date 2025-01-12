@@ -5,8 +5,8 @@ use super::symbol::Symbol;
 
 use node_derive::Node;
 
-use std::collections::HashMap;
 use std::path::PathBuf;
+use std::{collections::HashMap, str::FromStr};
 
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
@@ -95,9 +95,11 @@ pub enum FileFormat {
     Raw,
 }
 
-impl FileFormat {
-    pub fn from_str(s: &str) -> Self {
-        match s.to_ascii_lowercase().as_str() {
+impl FromStr for FileFormat {
+    type Err = ();
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(match s.to_ascii_lowercase().as_str() {
             "coff" => FileFormat::Coff,
             "elf" => FileFormat::Elf,
             "pe" => FileFormat::Pe,
@@ -107,7 +109,7 @@ impl FileFormat {
             "macho" => FileFormat::Macho,
             "raw" => FileFormat::Raw,
             _ => FileFormat::FormatUndefined,
-        }
+        })
     }
 }
 
@@ -129,9 +131,11 @@ pub enum Isa {
     Mips64,
 }
 
-impl Isa {
-    pub fn from_str(s: &str) -> Self {
-        match s.to_ascii_lowercase().as_str() {
+impl FromStr for Isa {
+    type Err = ();
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(match s.to_ascii_lowercase().as_str() {
             "ia32" => Isa::Ia32,
             "ppc32" => Isa::Ppc32,
             "x64" => Isa::X64,
@@ -142,7 +146,7 @@ impl Isa {
             "mips32" => Isa::Mips32,
             "mips64" => Isa::Mips64,
             _ => Isa::Undefined,
-        }
+        })
     }
 }
 

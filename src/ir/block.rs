@@ -5,7 +5,7 @@ use node_derive::Node;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-#[derive(Clone, PartialEq, Debug, Serialize, Deserialize)]
+#[derive(Clone, PartialEq, Debug, Serialize, Deserialize, Default)]
 pub struct Block {
     pub offset: u64,
     pub value: Option<BlockValue>,
@@ -14,15 +14,6 @@ pub struct Block {
 impl Block {
     pub fn new(offset: u64, value: Option<BlockValue>) -> Self {
         Self { offset, value }
-    }
-}
-
-impl Default for Block {
-    fn default() -> Self {
-        Self {
-            offset: 0,
-            value: None,
-        }
     }
 }
 
