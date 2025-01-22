@@ -7,13 +7,21 @@ use uuid::Uuid;
 
 #[derive(Clone, PartialEq, Debug, Serialize, Deserialize, Default)]
 pub struct Block {
-    pub offset: u64,
-    pub value: Option<BlockValue>,
+    offset: u64,
+    value: Option<BlockValue>,
 }
 
 impl Block {
     pub fn new(offset: u64, value: Option<BlockValue>) -> Self {
         Self { offset, value }
+    }
+
+    pub fn offset(&self) -> u64 {
+        self.offset
+    }
+
+    pub fn value(&self) -> &Option<BlockValue> {
+        &self.value
     }
 }
 
@@ -24,10 +32,10 @@ pub enum BlockValue {
 }
 
 impl BlockValue {
-    pub fn new_code(uuid: Uuid, size: u64, decode_mode: DecodeMode) -> Self {
+    pub fn new_code(uuid: Uuid, bytes: Vec<u8>, decode_mode: DecodeMode) -> Self {
         BlockValue::Code(CodeBlock {
             uuid,
-            size,
+            bytes,
             decode_mode,
         })
     }
@@ -37,9 +45,20 @@ impl BlockValue {
     }
 }
 
-#[derive(Node, Clone, PartialEq, Debug, Serialize, Deserialize)]
+/// A placeholder that serves as the endpoint (source or target)
+/// of a CFG edge.
+///
+/// ProxyBlock objects allow the construction of CFG edges to or from
+/// another node. For example, a call to a function in another module
+/// may be represented by an edge that originates at the calling
+/// CodeBlock and targets a ProxyBlock. Another example would be an
+/// edge that represents an indirect jump whose target is not known.
+///
+/// A ProxyBlock does not represent any instructions and so has neither
+/// an address nor a size.
+#[derive(Node, Clone, PartialEq, Debug, Serialize, Deserialize, Default)]
 pub struct ProxyBlock {
-    pub uuid: Uuid,
+    uuid: Uuid,
 }
 
 impl ProxyBlock {
@@ -48,20 +67,29 @@ impl ProxyBlock {
     }
 }
 
+/// A basic block that contains code.
 #[derive(Node, Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub struct CodeBlock {
-    pub uuid: Uuid,
-    pub size: u64,
-    pub decode_mode: DecodeMode,
+    uuid: Uuid,
+    bytes: Vec<u8>,
+    decode_mode: DecodeMode,
 }
 
 impl CodeBlock {
-    pub fn new(uuid: Uuid, size: u64, decode_mode: DecodeMode) -> Self {
+    pub fn new(uuid: Uuid, bytes: Vec<u8>, decode_mode: DecodeMode) -> Self {
         Self {
             uuid,
-            size,
+            bytes,
             decode_mode,
         }
+    }
+
+    pub fn bytes(&self) -> &Vec<u8> {
+        &self.bytes
+    }
+
+    pub fn decode_mode(&self) -> DecodeMode {
+        self.decode_mode
     }
 }
 
@@ -77,12 +105,16 @@ pub enum DecodeMode {
 
 #[derive(Node, Clone, PartialEq, Debug, Serialize, Deserialize)]
 pub struct DataBlock {
-    pub uuid: Uuid,
-    pub size: u64,
+    uuid: Uuid,
+    size: u64,
 }
 
 impl DataBlock {
     pub fn new(uuid: Uuid, size: u64) -> Self {
         Self { uuid, size }
+    }
+
+    pub fn size(&self) -> u64 {
+        self.size
     }
 }
