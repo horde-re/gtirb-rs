@@ -1,0 +1,20 @@
+[package]
+name = "node_derive"
+
+version = "0.1.0"
+
+edition = "2021"
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/horde-re/gtirb-rs/"
+
+authors = ["abel <67806187+standard3@users.noreply.github.com>"]
+
+[lib]
+proc-macro = true
+
+[dependencies]
+uuid = { version = "1.11.0", features = [] }
+syn = { version = "2.0", features = ["full"] }
+quote = "1.0"
+proc-macro2 = "1.0"

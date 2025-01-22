@@ -10,6 +10,15 @@ edition = "2021"
 readme = "README.md"
 license = "MIT"
 repository = "https://github.com/horde-re/gtirb-rs/"
+exclude = [".github", "CONTRIBUTING.md", "assets"]
+keywords = [
+    "reverse engineering",
+    "binary analysis",
+    "gtirb",
+    "intermediate representation",
+    "program analysis",
+    "binary rewriting",
+]
 
 authors = ["abel <67806187+standard3@users.noreply.github.com>"]
 
@@ -17,8 +26,9 @@ authors = ["abel <67806187+standard3@users.noreply.github.com>"]
 crate-type = ["lib"]
 
 [dependencies]
-prost = "0.13.3"
-prost-types = "0.13.3"
+serde = { version = "1.0.215", features = ["derive"] }
+uuid = { version = "1.11.0", features = ["v4", "v8", "fast-rng", "serde"] }
+node_derive = { path = "node_derive" }
 
-[build-dependencies]
-prost-build = "0.13.3"
+[dev-dependencies]
+impls = "1.0.3"
