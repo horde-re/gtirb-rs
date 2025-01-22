@@ -5,7 +5,7 @@
     </p>
     <div align="center">
         <img src="https://img.shields.io/badge/Built%20with%20Rust-grey?style=for-the-badge&logo=rust&color=%23282828">
-        <a href='https://coveralls.io/github/horde-re/horde'><img src='https://coveralls.io/repos/github/horde-re/horde/badge.svg' alt='Coverage Status' /></a>
+        <a href='https://coveralls.io/github/horde-re/horde'><img src='https://coveralls.io/repos/github/horde-re/gtirb-rs/badge.svg' alt='Coverage Status' /></a>
     </div>
 </div>
 
