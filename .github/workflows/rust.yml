@@ -35,7 +35,7 @@ jobs:
       run: cargo build --verbose
 
     - name: Tests
-      run: cargo nextest --all
+      run: cargo nextest run --all
 
     - name: Doctests
       run: cargo test --doc
