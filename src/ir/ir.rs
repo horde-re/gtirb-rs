@@ -9,13 +9,14 @@ use node_derive::Node;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-#[derive(Node, Clone, PartialEq, Debug, Serialize, Deserialize)]
+/// A complete internal representation consisting of Modules
+#[derive(Node, Clone, PartialEq, Debug, Serialize, Deserialize, Default)]
 pub struct Ir {
-    pub uuid: Uuid,
-    pub modules: Vec<Module>,
-    pub aux_data: HashMap<String, AuxData>,
-    pub version: u32,
-    pub cfg: Option<Cfg>,
+    uuid: Uuid,
+    modules: Vec<Module>,
+    aux_data: HashMap<String, AuxData>,
+    version: u32,
+    cfg: Option<Cfg>,
 }
 
 impl Ir {
@@ -29,6 +30,22 @@ impl Ir {
         }
     }
 
+    pub fn modules(&self) -> &Vec<Module> {
+        &self.modules
+    }
+
+    pub fn aux_data(&self) -> &HashMap<String, AuxData> {
+        &self.aux_data
+    }
+
+    pub fn version(&self) -> u32 {
+        self.version
+    }
+
+    pub fn cfg(&self) -> &Option<Cfg> {
+        &self.cfg
+    }
+
     pub fn add_module(&mut self, module: Module) {
         self.modules.push(module);
     }
@@ -36,10 +53,12 @@ impl Ir {
     pub fn remove_module(&mut self, module: &Module) {
         self.modules.retain(|m| m != module);
     }
-}
 
-impl Default for Ir {
-    fn default() -> Self {
-        Ir::new()
+    pub fn add_aux_data(&mut self, key: String, aux_data: AuxData) {
+        self.aux_data.insert(key, aux_data);
+    }
+
+    pub fn remove_aux_data(&mut self, key: &str) {
+        self.aux_data.remove(key);
     }
 }
