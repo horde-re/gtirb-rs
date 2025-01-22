@@ -16,7 +16,7 @@ fn proxyblock_has_node_trait() {
 #[test]
 fn create_proxyblock() {
     let uuid = Uuid::new_v4();
-    let block = ProxyBlock { uuid };
+    let block = ProxyBlock::new(uuid);
 
     assert_eq!(block.get_uuid(), &uuid);
     assert_eq!(block.get_type(), NodeType::ProxyBlock);
