@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 
+use super::address::Address;
 use super::block::Block;
 use super::symbolic_expression::SymbolicExpression;
 
@@ -8,28 +9,55 @@ use node_derive::Node;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-#[derive(Node, Clone, PartialEq, Debug, Serialize, Deserialize)]
+#[derive(Node, Clone, PartialEq, Debug, Serialize, Deserialize, Default)]
 pub struct ByteInterval {
-    pub uuid: Uuid,
-    pub blocks: Vec<Block>,
-    pub symbolic_expressions: HashMap<u64, SymbolicExpression>,
-    pub has_address: bool,
-    pub address: u64,
-    pub size: u64,
-    pub contents: Vec<u8>,
+    uuid: Uuid,
+    blocks: Vec<Block>,
+    symbolic_expressions: HashMap<u64, SymbolicExpression>,
+    has_address: bool,
+    address: Address,
+    size: u64,
+    content: Vec<u8>,
 }
 
 impl ByteInterval {
-    pub fn new() -> Self {
+    #[allow(unused_variables)]
+    pub fn new(address: Option<Address>, size: u64, init_size: Option<u64>) -> Self {
+        // TODO: Implement the rest of the function
+        // use init_size
         ByteInterval {
             uuid: Uuid::new_v4(),
             blocks: Vec::new(),
             symbolic_expressions: HashMap::new(),
             has_address: false,
-            address: 0,
-            size: 0,
-            contents: Vec::new(),
+            address: address.unwrap_or(0),
+            size,
+            content: Vec::new(),
         }
+    }
+
+    pub fn blocks(&self) -> &Vec<Block> {
+        &self.blocks
+    }
+
+    pub fn symbolic_expressions(&self) -> &HashMap<u64, SymbolicExpression> {
+        &self.symbolic_expressions
+    }
+
+    pub fn has_address(&self) -> bool {
+        self.has_address
+    }
+
+    pub fn address(&self) -> Address {
+        self.address
+    }
+
+    pub fn size(&self) -> u64 {
+        self.size
+    }
+
+    pub fn content(&self) -> &Vec<u8> {
+        &self.content
     }
 
     pub fn add_block(&mut self, block: Block) {
@@ -51,11 +79,5 @@ impl ByteInterval {
 
     pub fn remove_symbolic_expression(&mut self, offset: u64) {
         self.symbolic_expressions.remove(&offset);
-    }
-}
-
-impl Default for ByteInterval {
-    fn default() -> Self {
-        ByteInterval::new()
     }
 }
