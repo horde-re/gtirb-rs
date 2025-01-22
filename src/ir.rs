@@ -1,5 +1,6 @@
 //! Intermediate Representation (IR) for the binary analysis.
 
+pub mod address;
 pub mod auxdata;
 pub mod block;
 pub mod byte_interval;
