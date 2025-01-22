@@ -1,1 +1,1 @@
-//! Serializes [`ir::IR`] objects into binary files.
+//! Serializes [`crate::ir::ir::Ir`] objects into binary files.
